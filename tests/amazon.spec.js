@@ -45,3 +45,27 @@ test('TC-03 Validate the Laptop title', async ({ page }) => {
     await firstProduct.click();
     console.log("Clicked on Product");
 })
+
+// Test Case 4 - Search a laptop, select a product and add it to cart
+test('TC-04 Search laptop, select product and add to cart', async ({ page }) => {
+    const searchBox = page.locator('#twotabsearchtextbox')
+    await searchBox.fill('Laptop')
+    await searchBox.press('Enter');
+
+    const firstProduct = page.locator('//*[@id="3c5bb2e7-341a-44ba-a495-46161b04ce59"]/div/div/div/div/span/div/div/div/div[2]/div/div/div[1]/a/h2')
+    await expect(firstProduct).toBeVisible();
+    await firstProduct.click();
+    console.log("Selected Laptop product");
+
+    // Product page opens in the same tab, wait for Add to Cart button
+    const addToCartBtn = page.locator('#add-to-cart-button')
+    await expect(addToCartBtn).toBeVisible();
+    await addToCartBtn.click();
+    console.log("Clicked Add to Cart");
+
+    // Validate item added to cart confirmation
+    const cartConfirmation = page.locator('#huc-v2-order-row-confirm-text, #attachDisplayAddBaseAlert')
+    await expect(cartConfirmation.first()).toBeVisible();
+    console.log("Product added to cart successfully");
+})
+
