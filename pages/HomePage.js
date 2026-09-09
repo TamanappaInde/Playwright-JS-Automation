@@ -4,16 +4,19 @@ console.log("BasePage:", BasePage);
 class HomePage extends BasePage {
     constructor(page) {
         super(page);
-
         this.searchBox = page.locator('#twotabsearchtextbox');
         this.searchButton = page.locator('#nav-search-submit-button');
         this.amazonLogo = page.locator('#nav-logo-sprites');
     }
-
     async openAmazon() {
-        await this.navigateTo('/');
+        await this.navigateTo('https://www.amazon.in');
         await this.waitForPageLoad();
         await expect(this.page).toHaveTitle(/Amazon/i);
+    }
+
+    async searchProduct(productName) {
+        await this.searchBox.fill(productName);
+        await this.searchButton.click();
     }
 }
 
