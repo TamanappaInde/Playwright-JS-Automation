@@ -1,12 +1,13 @@
-class BasePage {
+const { expect } = require('@playwright/test')
 
+class BasePage {
     constructor(page) {
         this.page = page;
     }
 
     async navigateTo(url = '/') {
         await this.page.goto(url, {
-            waitUntil: 'domcontentloaded'
+            WaitUntil: 'domcontentloaded',
         });
     }
 
@@ -14,6 +15,7 @@ class BasePage {
         await this.page.waitForLoadState('domcontentloaded');
     }
 
-}
 
-module.exports = BasePage;
+
+
+}
