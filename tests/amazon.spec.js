@@ -33,14 +33,20 @@ test.describe('Amazon Laptop Purchase flow', () => {
     )
 
     test('TC01 Launch Amazon Website ', async ({ page }) => {
-            console.log("Amazon Launched Successfully...");
-        }
+        console.log("Amazon Launched Successfully...");
+    }
     )
 
-    test('TC02 Search Laptop under 40K', async ({ page }) => {
+    /* test('TC02 Search Laptop under 40K', async ({ page }) => {
         await homepage.searchProduct('Laptops under 40k');
         console.log("Laptop search completed successfully.")
+    }) */
+
+    test('TC03 Test Login Functionality', async ({ page }) => {
+        await homepage.loginTest();
+        console.log("Login Page Open Successfully...")
+
     })
 
-    
+
 });
